@@ -12,11 +12,11 @@
         WindowStyle="None"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
-        FontFamily="{materialDesign:MaterialDesignFont}"
+        FontFamily="{materialDesign:MaterialDesignFont}"    
         Title="ED Addon Helper" Height="700" Width="800"
         WindowStartupLocation="CenterScreen">
-
     
+
 
     <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" 
                          Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4">

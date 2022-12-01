@@ -1,83 +1,55 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using EDLauncherWPF.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EDLauncherWPF.ViewModel
+namespace EDLauncherWPF.Models
 {
-    public class MainViewModel : ObservableObject
+    class Settings
     {
-        private Profile currentProfile = new Profile("Default");
-
-        // setup some variables
-        static readonly string settingsFilePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Elite Add On Helper wpf\\";
-        // Current Objects
-
-
-        public MainViewModel()
+        class Setting
         {
-            Load_addons();
+            static public bool DarkMode { get; set; } = false;
+            static private bool SettingsLoaded = false;
+
         }
-
-
-        public string ProfileName
-        {
-            get => currentProfile.Name;
-            set => SetProperty(currentProfile.Name, value, currentProfile, (u, n) => u.Name = n);
-        }
-
         
-        public IEnumerable<AddOn> ListAddons
-        {
-            get => currentProfile.GetAddonsList();
+        // setup some variables
+        static readonly string SettingsFilePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Elite Add On Helper wpf\\";
+        static readonly string SettingsFile = SettingsFilePath + "settings.json";
 
-         }
-
-        internal static void SerializeAddons(object addOns)             // grabs all objects and saves states in json
+        public Settings()
         {
-            var Json = JsonConvert.SerializeObject(addOns, Formatting.Indented, new JsonSerializerSettings
+            //if there are no addons loaded attempt to load
+            if (!SettingsLoaded)
             {
-                TypeNameHandling = TypeNameHandling.Objects,
-                TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple
-            });
-
-            File.WriteAllText(settingsFilePath + "AddOns.json", Json);
+                LoadSettings();
+            }
         }
 
-
-        /// <summary>
-        /// Loads preferences from addons.json in settings folder
-        /// if not found copies defautl file to folder
-        /// </summary>
-        private void Load_addons()                                       //load preferences
+        public bool LoadSettings()
         {
             //look for settings path, create if needed
-            updateMyStatus("Checking Folder Exists");
             if (!Path.Exists(settingsFilePath))
             {
-                updateMyStatus("Path Not Found");
                 try
                 {
-                    updateMyStatus("Trying to create");
                     System.IO.Directory.CreateDirectory(settingsFilePath);
 
                 }
                 catch (System.IO.DirectoryNotFoundException)
                 {
                     //Error code goes here
+                    return false;
                 }
             }
-            // load all the textboxes with values from settings file
-            updateMyStatus("Checking file exists");
+            // load all the settings file
             if (!File.Exists(settingsFilePath + "AddOns.json"))
             {
-                updateMyStatus("File not found");
                 // lets copy the default addons.json to the settings path..
                 // probably want to remove this and do the file copy in an installer..
                 // string defaultpath = AppDomain.CurrentDomain.BaseDirectory;
@@ -98,7 +70,7 @@ namespace EDLauncherWPF.ViewModel
             }
             currentProfile.AddAddons(DeserializeAddOns());
         }
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -137,13 +109,5 @@ namespace EDLauncherWPF.ViewModel
             }
         }
 
-        private void updateMyStatus(string status)                      // function to update the status bar
-        {
-
-            //toolStripStatusLabel1.Text = status;
-            Debug.WriteLine(status);
-        }
-
-        
     }
 }
