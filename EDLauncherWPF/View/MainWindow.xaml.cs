@@ -61,5 +61,10 @@ namespace EDLauncherWPF.View
             base.OnMouseLeftButtonDown(e);
             DragMove();
         }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
