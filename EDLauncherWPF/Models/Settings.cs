@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -9,93 +10,54 @@ using System.Threading.Tasks;
 
 namespace EDLauncherWPF.Models
 {
-    class Settings
+    public class Settings : ObservableObject
     {
-        class Setting
+        private class Setting
         {
-            static public bool DarkMode { get; set; } = false;
-            static private bool SettingsLoaded = false;
-
+            [JsonProperty] public static bool DarkMode { get; set; } = false;
+            [JsonProperty] public static string DefaultProfileName { get; set; } = string.Empty;
+            [JsonProperty] public static string AutoLaunchProfile { get; set; } = string.Empty;                        
         }
-        
+
+        private static Setting setting = new();
+
         // setup some variables
-        static readonly string SettingsFilePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Elite Add On Helper wpf\\";
-        static readonly string SettingsFile = SettingsFilePath + "settings.json";
+        public static readonly string SettingsFilePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Elite Add On Helper wpf\\";
+        public static readonly string SettingsFile = SettingsFilePath + "settings.json";
+        private static bool SettingsLoaded = false;
+        public static string DefaultProfile
+        {
+            get
+            {
+                return Setting.DefaultProfileName;
+            }
+            set
+            {
+                Setting.DefaultProfileName = value;
+            }
+        }
 
         public Settings()
         {
             //if there are no addons loaded attempt to load
             if (!SettingsLoaded)
             {
-                LoadSettings();
+                SettingsLoaded = LoadSettings();
             }
         }
 
         public bool LoadSettings()
         {
-            //look for settings path, create if needed
-            if (!Path.Exists(settingsFilePath))
-            {
-                try
-                {
-                    System.IO.Directory.CreateDirectory(settingsFilePath);
-
-                }
-                catch (System.IO.DirectoryNotFoundException)
-                {
-                    //Error code goes here
-                    return false;
-                }
-            }
             // load all the settings file
-            if (!File.Exists(settingsFilePath + "AddOns.json"))
+            if (!File.Exists(SettingsFile))
             {
-                // lets copy the default addons.json to the settings path..
-                // probably want to remove this and do the file copy in an installer..
-                // string defaultpath = AppDomain.CurrentDomain.BaseDirectory;
-                string startupPath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "addons.json");
-                string sourceFile = startupPath;
-                string destinationFile = settingsFilePath + "AddOns.json";
-                try
-                {
-                    File.Copy(sourceFile, destinationFile, true);
-                    updateMyStatus("Settings copied");
-                    updateMyStatus("Loading Settings");
-                }
-                catch (IOException iox)
-                {
-                    // Console.WriteLine(iox.Message);
-                    updateMyStatus("Settings error");
-                }
+                //There is no settings file so attempt to save the default settings
+                SaveSettings();
             }
-            currentProfile.AddAddons(DeserializeAddOns());
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="addOns"></param>
-        internal static void SerializeAddons(object addOns)
-        {
-            var Json = JsonConvert.SerializeObject(addOns, Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Objects,
-                TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple
-            });
-
-            File.WriteAllText(settingsFilePath + "AddOns.json", Json);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        internal static List<AddOn> DeserializeAddOns()   //read settings to json and load into objects
-        {
-            var Json = File.ReadAllText(settingsFilePath + "AddOns.json");
+            var Json = File.ReadAllText(SettingsFile);
             try
             {
-                return JsonConvert.DeserializeObject<List<AddOn>>(Json, new JsonSerializerSettings
+                setting = JsonConvert.DeserializeObject<Setting>(Json, new JsonSerializerSettings
                 {
                     TypeNameHandling = TypeNameHandling.Objects,
                     TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple
@@ -104,9 +66,45 @@ namespace EDLauncherWPF.Models
             catch
             {
                 //oops something went wrong
-                //updatemystatus("Prefs file corrupt, please delete and re run");
-                return null;
+                return false;
             }
+            SettingsLoaded= true;
+            return true;
+        }
+
+        internal static bool SaveSettings()
+        {
+            var Json = JsonConvert.SerializeObject(setting, Formatting.Indented);
+            //    , new JsonSerializerSettings
+            //{
+            //    TypeNameHandling = TypeNameHandling.Objects,
+            //    TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple
+            //});
+            
+            //look for settings path, create if needed
+            if (!Path.Exists(SettingsFilePath))
+            {
+                try
+                {
+                    System.IO.Directory.CreateDirectory(SettingsFilePath);
+
+                }
+                catch (System.IO.DirectoryNotFoundException)
+                {
+                    //Error code goes here
+                    return false;
+                }
+            }
+            try
+            {
+                File.WriteAllText(SettingsFile, Json);
+            }
+            catch
+            {
+                return false; 
+            }
+            SettingsLoaded= true;
+            return true;
         }
 
     }

@@ -1,0 +1,13 @@
+﻿//TODO List
+
+
+//TODO: Download AddOns
+	//TODO: Set Download Location
+	//TDOD: Downlad as Async Task?
+
+//TODO: Status SnackBar
+
+//TODO: AddOn Type and helper apps
+	web
+	image
+	target?
