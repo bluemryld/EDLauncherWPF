@@ -20,7 +20,7 @@
 
     <materialDesign:Card   UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" 
                          Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4" >
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        
         <StackPanel>
             <materialDesign:DialogHost CloseOnClickAway="True" x:Name="DialogHost">
                 <StackPanel>
@@ -107,6 +107,6 @@
                 </materialDesign:Card>
             </StackPanel>
         </StackPanel>
-        </ScrollViewer>
+       
     </materialDesign:Card>
 </Window>

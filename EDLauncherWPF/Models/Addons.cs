@@ -198,6 +198,7 @@ namespace EDLauncherWPF.Models
             
             [JsonIgnore]
             public Process Proc = new Process();
+            [JsonIgnore]
             public ProcessStartInfo ProcStartInfo = new();
 
             private void LaunchAddon()                           // function to launch enabled applications
