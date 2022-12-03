@@ -26,8 +26,7 @@ namespace EDLauncherWPF.View
             InitializeComponent();
             this.DataContext = new MainViewModel();
 
-        }
-               
+        }        
 
         public bool IsDarkTheme { get; set; }
         private readonly PaletteHelper paletteHelper = new PaletteHelper();
