@@ -48,6 +48,7 @@ namespace EDLauncherWPF.View
             }
             paletteHelper.SetTheme(theme);
 
+
         }
 
         private void exitApp(object sender, RoutedEventArgs e)
@@ -60,10 +61,7 @@ namespace EDLauncherWPF.View
             base.OnMouseLeftButtonDown(e);
             DragMove();
         }
-
-        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
+              
+               
     }
 }
