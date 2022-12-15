@@ -11,7 +11,7 @@
         AllowsTransparency="True"
         WindowStyle="None"
         TextElement.FontWeight="Medium"
-        TextElement.FontSize="14"
+        TextElement.FontSize="12"
         FontFamily="{materialDesign:MaterialDesignFont}"    
         Title="ED Addon Helper" Height="800" Width="800"
         WindowStartupLocation="CenterScreen">
@@ -33,7 +33,7 @@
                                 <ToggleButton Cursor="Hand" ToolTip="Enable Dark Mode" Margin="12 0 8 0" 
                                     x:Name="themeToggle" IsChecked="{Binding IsDarkTheme}" Click="toggleTheme"/>
                             </StackPanel>
-                            <Button x:Name="btn_exit" ToolTip="Close Application" Content="Exit Application" Click="exitApp"/>
+                            <Button x:Name="btn_exit" ToolTip="Close Application" Content="Exit Application" Command="{Binding btncmd_ExitApp}"/>
                         </StackPanel>
                     </materialDesign:PopupBox>
                 </StackPanel>
@@ -41,65 +41,109 @@
             <StackPanel>
                 <TextBlock Margin="0 5 0 5" HorizontalAlignment="Center" FontSize="17" 
                         FontWeight="Bold" Text="ED Addon Helper"/>
-                    <materialDesign:Card UniformCornerRadius="10" Background="DarkOrange" Width="500" Height="Auto" Margin="8 8 8 8"
+                    <materialDesign:Card UniformCornerRadius="10" Background="DarkOrange" Width="600" Height="Auto" Margin="8 8 8 8" Padding="8 8 8 8"
                         VerticalAlignment="Center" HorizontalAlignment="Center" 
                         materialDesign:ElevationAssist.Elevation="Dp16">
                     <StackPanel>
-                        <materialDesign:DialogHost CloseOnClickAway="True" x:Name="ProfileDialogHost">
-                            <StackPanel>
-                                <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 10 5 0"
-                                        PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25">
-                                    <StackPanel>
-                                        <Button x:Name="btn_newProfile" ToolTip="New Profile" Content="New Profile" />
-                                        <Button x:Name="btn_editProfile" ToolTip="Edit Profile" Content="Edit Profile" />
-                                        <Button x:Name="btn_deleteProfile" ToolTip="Delete Profile" Content="Delete Profile" />
-                                    </StackPanel>
-                                </materialDesign:PopupBox>
-                            </StackPanel>
-                        </materialDesign:DialogHost>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <ComboBox
-                                    Margin="8 8 8 8"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="8 25 8 8">
+                                <ComboBox
+                                    Margin="8 0 8 8"
                                     x:Name="cboxProfile"
                                     Style="{StaticResource MaterialDesignOutlinedComboBox}"
                                     materialDesign:HintAssist.Hint="Profiles"
-                                    ItemsSource="{Binding ProfileName}"
+                                    ItemsSource="{Binding ProfileNames}"
+                                    DisplayMemberPath="Value.Name"
+                                    SelectedValue="{Binding CurrentProfile}"
+                                    SelectedValuePath="Value.Name"
                                     Width="256" />
-                            <materialDesign:PackIcon Kind="Play" VerticalAlignment="Center" HorizontalAlignment="Right" Height="25" Width="25"  Margin="5 0 0 0"/>
+                                <materialDesign:PackIcon Kind="Play" VerticalAlignment="Center" HorizontalAlignment="Right" Height="25" Width="25"  Margin="5 0 0 0"/>
+                            </StackPanel>
+                            
+                            <materialDesign:DialogHost CloseOnClickAway="True" x:Name="ProfileDialogHost">
+                                <StackPanel>
+                                     <materialDesign:PopupBox HorizontalAlignment="Right" Margin="100 10 5 0"
+                                            PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25">
+                                            <StackPanel>
+                                                <Button x:Name="btn_newProfile" ToolTip="New Profile" Content="New Profile" Command="{Binding btncmd_NewProfile}" />
+                                                <Button x:Name="btn_deleteProfile" ToolTip="Delete Profile" Content="Delete Profile" Command="{Binding btncmd_DeleteProfile}"/>
+                                            </StackPanel>
+                                     </materialDesign:PopupBox>
+                                </StackPanel>
+                            </materialDesign:DialogHost>
                         </StackPanel>
-                        <TextBlock HorizontalAlignment="Center" Text= "{Binding ProfileDescription}" materialDesign:HintAssist.Hint="Desciption"/>
-                        <TextBlock HorizontalAlignment="Center" Text="{Binding ProfileGame}" />
+                        <Border Style="{StaticResource HorizontalDividerBorder}" />
+                        <Expander HorizontalAlignment="Stretch"  Background="DarkOrange">
+                            <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                <StackPanel>
+                                    
+                                    <TextBox Text= "{Binding ProfileDescription}" materialDesign:HintAssist.Hint="Desciption" Margin="12 0 8 8"/>
+                                    <TextBox Text="{Binding ProfileGame}" materialDesign:HintAssist.Hint="Game" Margin="12 0 8 8"/>
+                                    <TextBox Text= "GamePath" materialDesign:HintAssist.Hint="Game Path" Margin="12 0 8 8"/>
+                                    <TextBox Text= "GameArgs" materialDesign:HintAssist.Hint="Game Args" Margin="12 0 8 8"/>
+                                </StackPanel>
+                                <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock VerticalAlignment="Center" Text="Default" />
+                                    <ToggleButton Cursor="Hand" ToolTip="Default Profile" Margin="12 0 8 8"/>
+                                    <TextBlock VerticalAlignment="Center" Text="AutoLaunch" />
+                                    <ToggleButton Cursor="Hand" ToolTip="Autolaunch Addons At Startup" Margin="12 0 8 8"/>
+                                    <TextBlock VerticalAlignment="Center" Text="Wait For Addons" />
+                                    <ToggleButton Cursor="Hand" ToolTip="Wait before Launching Elite" Margin="12 0 8 8"/>
+                                    <TextBlock VerticalAlignment="Center" Text="Close Before Exit" />
+                                    <ToggleButton Cursor="Hand" ToolTip="Close Addons When Exiting" Margin="12 0 8 8"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+                        <Border Style="{StaticResource HorizontalDividerBorder}" />
                         
                     </StackPanel>
                 </materialDesign:Card>
-
-                <materialDesign:Card UniformCornerRadius="10" Background="LightBlue" Width="500" Margin="8 8 8 8"
-                                     VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                     materialDesign:ElevationAssist.Elevation="Dp16">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Apps" Margin="8 8 8 8"/>
-                    </StackPanel>
-                </materialDesign:Card>
-                    <materialDesign:Card UniformCornerRadius="10" Background="{DynamicResource MaterialDesignPaper}" Width="600" Height="350" Margin="8 8 8 8"
+                
+                <materialDesign:Card UniformCornerRadius="10" Background="{DynamicResource MaterialDesignPaper}" Width="600" Height="350" Margin="8 8 8 8"
                                      VerticalAlignment="Center" HorizontalAlignment="Center" 
                                      materialDesign:ElevationAssist.Elevation="Dp16">
                     <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                        
                         <ItemsControl  ItemsSource="{Binding GetCurrentAddons}" Grid.IsSharedSizeScope="True" Margin="12 0 12 0">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <materialDesign:Card UniformCornerRadius="10" Background="SteelBlue" Width="500" Margin="8 8 8 8"
                                      VerticalAlignment="Center" HorizontalAlignment="Center" 
                                      materialDesign:ElevationAssist.Elevation="Dp16">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding FriendlyName}" Margin="8 8 8 8"/>
-
-
-                                            <ToggleButton Cursor="Hand" IsChecked="{Binding Enabled}"/>
-                                            <materialDesign:PackIcon Kind="Play" VerticalAlignment="Center"/>
+                                        <StackPanel>
+                                            <Expander HorizontalAlignment="Stretch" Background="Transparent">
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding FriendlyName}" Margin="8 8 8 8" VerticalAlignment="Center"/>
+                                                        <ToggleButton Cursor="Hand" IsChecked="{Binding Enabled}"/>
+                                                        <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                                                materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding Running}"
+                                                                materialDesign:ButtonProgressAssist.Value="-1"
+                                                                materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                                                                
+                                                                Content="{materialDesign:PackIcon Play}"
+                                                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                                                Command="{Binding DataContext.RunAddonCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}"
+                                                                Height="30" Width="30" Margin="4 4 4 4"/>
+                                                        <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                                                materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding Running}"
+                                                                materialDesign:ButtonProgressAssist.Value="-1"
+                                                                materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                                                                Content="{materialDesign:PackIcon Stop}"
+                                                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                                                Command="{Binding DataContext.RunAddonCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}"
+                                                                Height="30" Width="30" Margin="4 4 4 4"/>
+                                                    </StackPanel>
+                                                </Expander.Header>
+                                                <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                                    <StackPanel>
+                                                        <TextBox Text="Path" Margin="8 8 8 8"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Expander>
                                         </StackPanel>
-                                        
                                     </materialDesign:Card>
-
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,7 +6,7 @@ using System.IO;
 
 namespace EDLauncherWPF.Models
 {
-    public class Addons : ObservableObject
+    public class Addons
     {
         //the list of addons we know about
         private static List<AddOn> _addons = new();
@@ -131,6 +130,15 @@ namespace EDLauncherWPF.Models
             }
         }
 
+        public void RunAddon(string addonName)
+        {
+            _addons.Find(a => a.FriendlyName== addonName).RunAddon();
+
+        }
+
+
+        #region AddOn - Indiviual Addon Class Code
+
         public class AddOn
         {
             
@@ -200,59 +208,44 @@ namespace EDLauncherWPF.Models
             public Process Proc = new Process();
             [JsonIgnore]
             public ProcessStartInfo ProcStartInfo = new();
+            [JsonIgnore]
+            public bool Running { get; set; } = false;
 
-            private void LaunchAddon()                           // function to launch enabled applications
+
+            public void RunAddon()                           // function to launch enabled applications
             {
-                
-                // TARGET requires a path to a script, if that path has spaces, we need to quote them - set a string called quote we can use to top and tail
-                const string quote = "\"";
-                
-                var path = $"{ProgramDirectory}/{ExecutableName}";
-                
-                if (File.Exists(path))      // worth checking the app we want to launch actually exists...
+                // TODO : quote commadn args?
+                // TODO : run non exes
+
+
+                if (!Running)
                 {
-                    try
+                    var path = $"{ProgramDirectory}/{ExecutableName}";
+                    if (File.Exists(path))      // worth checking the app we want to launch actually exists...
                     {
-                        ProcStartInfo.Arguments = Args;
-                        ProcStartInfo.UseShellExecute = true;
-                        ProcStartInfo.WorkingDirectory = ProgramDirectory;
-                        Proc = Process.Start(ProcStartInfo);
-                        Proc.EnableRaisingEvents = true;
-                        //TODO update the running icon proc.Exited += new EventHandler(ProcessExitHandler);
-
-//                        System.Threading.Thread.Sleep(50);
-//                        proc.Refresh();
-
-
+                        try
+                        {
+                            ProcStartInfo.Arguments = Args;
+                            ProcStartInfo.UseShellExecute = true;
+                            ProcStartInfo.WorkingDirectory = ProgramDirectory;
+                            ProcStartInfo.FileName = ExecutableName;
+                            Proc = Process.Start(ProcStartInfo);
+                            Running = true;
+                            Proc.EnableRaisingEvents = true;
+                            Proc.Exited += new EventHandler(AddonExitHandler);
+                        }
+                        catch
+                        {
+                            // oh dear, something want horribluy wrong..
+                        }
                     }
-                    catch
-                    {
-                        // oh dear, something want horribluy wrong..
-                     }
-
-
                 }
-                //else
-                //{
-                //    // yeah, that path didnt exist...
-                //    //are we launching a web app?
-                //    if (addOn.WebApp != String.Empty)
-                //    {
-                //        //ok lets launch it in default browser
-                //        updatemystatus("Launching " + addOn.FriendlyName);
-                //        string target = addOn.WebApp;
-                //        Process.Start(new ProcessStartInfo(target) { UseShellExecute = true });
-                //        //System.Diagnostics.Process.Start(target);
-                //    }
-                //    else
-                //    {
-                //        updatemystatus($"Unable to launch {addOn.FriendlyName}..");
-                //    }
+            }
 
-                //}
-                //updatemystatus("All apps launched, waiting for EDLaunch Exit..");
-
-
+            private void AddonExitHandler(object sender, System.EventArgs e)
+            {
+                Running= false;
+                
             }
 
             public bool Conflicts(AddOn addon)
@@ -267,5 +260,7 @@ namespace EDLauncherWPF.Models
                 return true;
             }
         }
+
+        #endregion
     }
 }

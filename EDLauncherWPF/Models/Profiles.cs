@@ -1,51 +1,49 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
 namespace EDLauncherWPF.Models
 {
-    public class Profiles : ObservableObject
+    public class Profiles
     {
-        private static Dictionary<string, Profile> _profiles = new();
         private static string ProfilesFilePath = Settings.SettingsFilePath;
         private static string ProfilesFile = Settings.SettingsFilePath + "profiles.json";
-
-        //todo: add validation
-        public static string CurrentProfile { get; set; }
-
-        public static string Description
+                
+        public static Dictionary<string, Profile> AllProfiles = new();
+       
+        private static string currentProfile = string.Empty;
+        public string CurrentProfile
         {
-            get
-            {
-                return _profiles[CurrentProfile].Description;
-            }
-            set => _profiles[CurrentProfile].Description = value;
+            //TODO: add validation
+            get { return currentProfile; }
+            set { currentProfile = value; }
         }
-
-        public static string Name
+        public string Name
         {
-            get
+            get { return AllProfiles[currentProfile].Name; }
+            set 
             {
-                return _profiles[CurrentProfile].Name;
+                AllProfiles[currentProfile].Name = value;
+                currentProfile = value;
             }
-            set
-            {
-                _profiles[CurrentProfile].Name = value;
-                CurrentProfile= value;
-            }
+        }        
+        public string Description
+        {
+            get { return AllProfiles[currentProfile].Description; }
+            set => AllProfiles[currentProfile].Description = value; 
         }
-
         public static string GameName
         {
-            get
-            {
-                return _profiles[CurrentProfile].GameName;
-            }
-            set => _profiles[CurrentProfile].GameName = value;
+            get { return AllProfiles[currentProfile].GameName; }
+            set => AllProfiles[currentProfile].GameName = value;
         }
-
+        public static string GamePath
+        {
+            get { return AllProfiles[currentProfile].GamePath; }
+            set => AllProfiles[currentProfile].GamePath = value;
+        }
         public Profiles()
         {
             LoadProfiles();
@@ -66,22 +64,22 @@ namespace EDLauncherWPF.Models
                 var Json2 = File.ReadAllText(ProfilesFile);
                 try
                 {
-                    _profiles = JsonConvert.DeserializeObject<Dictionary<string, Profile>>(Json2);
+                    AllProfiles = JsonConvert.DeserializeObject<Dictionary<string, Profile>>(Json2);
                     //    , new JsonSerializerSettings
                     //{
                     //    TypeNameHandling = TypeNameHandling.Objects,
                     //    TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple
                     //});
-                    if (_profiles.ContainsKey(Settings.DefaultProfile))
+                    if (AllProfiles.ContainsKey(Settings.DefaultProfile))
                     {
                         CurrentProfile = Settings.DefaultProfile;
                     }
                     else
                     {
-                        var firstElement = _profiles.FirstOrDefault();
+                        var firstElement = AllProfiles.FirstOrDefault();
                         CurrentProfile = firstElement.Key;
                     }
-                    _profiles[CurrentProfile].AddAllAddons();
+                    AllProfiles[CurrentProfile].AddAllAddons();
                     SaveProfiles();
                  }
                 catch
@@ -93,21 +91,9 @@ namespace EDLauncherWPF.Models
             }
         }
 
-        private bool Add(string name, string description)
+        public bool SaveProfiles()
         {
-            if (!_profiles.ContainsKey(name))
-            {
-                _profiles.Add(name, new Profile(name, description));
-                _profiles[name].AddAllAddons();
-                SaveProfiles();
-                return true;
-            }
-            return false;
-        }
-        
-        private bool SaveProfiles()
-        {
-            var Json = JsonConvert.SerializeObject(_profiles, Formatting.Indented);
+            var Json = JsonConvert.SerializeObject(AllProfiles, Formatting.Indented);
             //    , new JsonSerializerSettings
             //{
             //    TypeNameHandling = TypeNameHandling.Objects,
@@ -139,7 +125,43 @@ namespace EDLauncherWPF.Models
             return true;
         }
 
+        public bool Add(string name, string description)
+        {
+            if (name=="")
+            {
+                name = "New";
 
+            }
+
+            byte i = 0;
+            string nametofind = name;
+
+            while (AllProfiles.ContainsKey(nametofind) && i <255)
+            {
+                i++;
+                nametofind = name + " #" + i.ToString();
+            }
+            if (i == 255) return false;
+            AllProfiles.Add(nametofind, new Profile(nametofind, description));
+            AllProfiles[nametofind].AddAllAddons();
+            SaveProfiles();
+            currentProfile = nametofind;
+            return true;
+        }
+        public bool Remove()
+        {
+            //TODO: Validation
+            if (AllProfiles.Count > 1)
+            {
+                AllProfiles.Remove(currentProfile);
+                currentProfile = AllProfiles.FirstOrDefault().Key;
+                SaveProfiles();
+                return true;
+            }
+            else return false;
+            
+        }
+        
         public List<CurrentProfileAddon> GetCurrentAddons()
         {
             Addons _addons = new();
@@ -156,6 +178,7 @@ namespace EDLauncherWPF.Models
                 currentProfileAddon.Installable= a.Installable;
                 currentProfileAddon.Scripts= a.Scripts;
                 currentProfileAddon.ProgramDirectory= a.ProgramDirectory;
+                currentProfileAddon.Running= a.Running;
                 //currentProfileAddon.Enabled= _profiles[CurrentProfile].ProfileAddOns.
                 output.Add(currentProfileAddon);
             }
@@ -169,87 +192,6 @@ namespace EDLauncherWPF.Models
             { }
         } 
 
-        public class Profile : ObservableObject
-        {
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public string GameName { get; set; }
-            public List<ProfileAddon> ProfileAddOns =new();
-
-            public class ProfileAddon : ObservableObject
-            {
-                public string Name = string.Empty;
-                public bool Enabled;
-
-                public ProfileAddon(string name, bool enabled)
-                {
-                    Name = name;
-                    Enabled = enabled;
-                }
-            }
-
-            public bool AddAllAddons()
-            {
-                Addons _addons = new();
-                foreach (Addons.AddOn a in _addons.GetAddonsList())
-                {
-                    AddProfileAddon(a.FriendlyName, a.EnabledDefault);
-                }
-                return false;
-            }
-                        
-            public bool AddProfileAddon(string name, bool enabled)
-            {
-                if(!ProfileAddonExists(name))
-                { 
-                    ProfileAddOns.Add(new ProfileAddon(name, enabled));
-                    return true;
-                }
-                return false;
-            }
-
-            public bool ProfileAddonExists(string name)
-            {
-                foreach (ProfileAddon pa in ProfileAddOns)
-                {
-                    if(pa.Name == name) return true;
-                }
-                return false;
-            }
-
-            public Profile() { }
-
-            public Profile(string name)
-            {
-                Name = name;
-                Description = name;
-                GameName = string.Empty;
-                ProfileAddOns = new List<ProfileAddon>();
-            }
-
-            public Profile(string name, string description) : this(name)
-            {
-                Name= name;
-                Description = description;
-            }
-
-            public IEnumerable<ProfileAddon> GetProfileAddonsList()
-            {
-                return ProfileAddOns; 
-            }
-
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="addOn"></param>
-            //public void AddAddon(AddOn addOn)
-            //{
-            //    _addons.AddAddon(addOn);
-            //}
-            //public void AddAddons(List<AddOn> incomingAddons)
-            //{
-            //    _addons.AddAddons(incomingAddons);
-            //}
-        }
+        
     }
 }

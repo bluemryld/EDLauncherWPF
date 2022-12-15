@@ -1,0 +1,90 @@
+[
+  {
+    "FriendlyName": "Ed Engineer",
+    "Enabled": false,
+    "ProgramDirectory": "",
+    "ExecutableName": "EDEngineer.exe",
+    "Installable": true,
+    "AutoDiscoverPath": "",
+    "Scripts": "",
+    "Url": "https://raw.githubusercontent.com/msarilar/EDEngineer/master/EDEngineer/releases/setup.exe",
+    "WebApp": ""
+  },
+  {
+    "FriendlyName": "Ed Market Connector",
+    "Enabled": false,
+    "ProgramDirectory": "C:\\Program Files (x86)\\EDMarketConnector",
+    "ExecutableName": "EDMarketConnector.exe",
+    "Installable": true,
+    "AutoDiscoverPath": "C:\\Program Files (x86)\\EDMarketConnector",
+    "Scripts": "",
+    "Url": "https://github.com/EDCD/EDMarketConnector/releases/download/Release%2F5.5.0/EDMarketConnector_win_5.5.0.msi",
+    "WebApp": ""
+  },
+  {
+    "FriendlyName": "VoiceAttack",
+    "Enabled": false,
+    "ProgramDirectory": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\VoiceAttack\\",
+    "ExecutableName": "VoiceAttack.exe",
+    "Installable": false,
+    "AutoDiscoverPath": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\VoiceAttack\\",
+    "Scripts": "",
+    "Url": "",
+    "WebApp": ""
+  },
+  {
+    "FriendlyName": "Ed Discovery",
+    "Enabled": false,
+    "ProgramDirectory": "",
+    "ExecutableName": "EDDiscovery.exe",
+    "Installable": true,
+    "AutoDiscoverPath": "C:\\Program Files\\EDDiscovery",
+    "Scripts": "",
+    "Url": "https://github.com/EDDiscovery/EDDiscovery/releases/download/Release_15.1.4/EDDiscovery-15.1.4.exe",
+    "WebApp": ""
+  },
+  {
+    "FriendlyName": "ED Odyysey Materials Helper",
+    "Enabled": false,
+    "ProgramDirectory": "",
+    "ExecutableName": "Elite Dangerous Odyssey Materials Helper Launcher.exe",
+    "Installable": true,
+    "AutoDiscoverPath": "",
+    "Scripts": "",
+    "Url": "https://github.com/jixxed/ed-odyssey-materials-helper/releases/download/1.101/Elite.Dangerous.Odyssey.Materials.Helper-1.101.msi",
+    "WebApp": ""
+  },
+  {
+    "FriendlyName": "T.A.R.G.E.T.",
+    "Enabled": false,
+    "ProgramDirectory": "",
+    "ExecutableName": "TARGETGUI.exe",
+    "Installable": false,
+    "AutoDiscoverPath": "C:\\Program Files (x86)\\Thrustmaster\\TARGET\\x64",
+    "Scripts": "",
+    "Url": "",
+    "WebApp": ""
+  },
+  {
+    "FriendlyName": "Elite",
+    "Enabled": true,
+    "ProgramDirectory": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Elite Dangerous\\",
+    "ExecutableName": "EDLaunch.exe",
+    "Installable": false,
+    "AutoDiscoverPath": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Elite Dangerous\\",
+    "Scripts": "",
+    "Url": "",
+    "WebApp": ""
+  },
+  {
+    "FriendlyName": "Inara",
+    "Enabled": true,
+    "ProgramDirectory": "",
+    "ExecutableName": "",
+    "Installable": false,
+    "AutoDiscoverPath": "",
+    "Scripts": "",
+    "Url": "",
+    "WebApp": "https://inara.cz/elite/cmdr/"
+  }
+]

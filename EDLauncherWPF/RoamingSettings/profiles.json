@@ -1,0 +1,682 @@
+{
+  "Default": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": true
+      },
+      {
+        "Name": "Inara",
+        "Enabled": true
+      }
+    ],
+    "Name": "Default",
+    "Description": "Automatically Created Profile",
+    "GameName": null,
+    "GamePath": null
+  },
+  "New": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #1": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #1",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #2": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #2",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #3": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #3",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #4": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #4",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #5": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #5",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #6": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #6",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #7": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #7",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #8": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #8",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #9": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #9",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #10": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #10",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #11": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #11",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #12": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #12",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #13": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #13",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #14": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #14",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  },
+  "New #15": {
+    "ProfileAddOns": [
+      {
+        "Name": "Ed Engineer",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Market Connector",
+        "Enabled": false
+      },
+      {
+        "Name": "VoiceAttack",
+        "Enabled": false
+      },
+      {
+        "Name": "Ed Discovery",
+        "Enabled": false
+      },
+      {
+        "Name": "ED Odyysey Materials Helper",
+        "Enabled": false
+      },
+      {
+        "Name": "T.A.R.G.E.T.",
+        "Enabled": false
+      },
+      {
+        "Name": "Elite",
+        "Enabled": false
+      },
+      {
+        "Name": "Inara",
+        "Enabled": false
+      }
+    ],
+    "Name": "New #15",
+    "Description": "",
+    "GameName": "",
+    "GamePath": null
+  }
+}
